@@ -21,8 +21,15 @@ pipeline{
           }
       }
       stage("Test App"){
-          steps{
+          steps {
               sh 'mvn test'
+          }
+      }
+      stage("SonarQube Analysis") {
+          steps {
+              withSonarQubeEnv('jenkins-sonarqube') {
+              sh 'mvn sonar:sonar'
+              }
           }
       }
       
