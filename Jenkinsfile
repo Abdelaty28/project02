@@ -7,7 +7,7 @@ pipeline{
   environment {
           DOCKER_USER = "11mahmoud04"
           DOCKER_CREDS = "docker-token"
-          IMAGE_NAME = "${DOCKER_USER}/project02"
+          IMAGE_NAME = "${DOCKER_USER}/register-app"
           IMAGE_TAG = "${BUILD_NUMBER}"
   }
   stages{
