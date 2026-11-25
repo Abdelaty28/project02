@@ -72,5 +72,14 @@ pipeline{
               '''
           }
       }
+      stage("Cleanup Artifacts") {
+          steps {
+              sh '''
+                  docker rmi $IMAGE_NAME:$IMAGE_TAG || true
+                  docker rmi $IMAGE_NAME:latest || true
+                  docker image prune -f
+              '''
+          }
+      }
   }
 }
