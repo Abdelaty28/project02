@@ -60,5 +60,17 @@ pipeline{
                 }
             }
       }
+      stage("Trivy Scan") {
+          steps {
+              sh '''
+                  docker run --rm \
+                    -v /var/run/docker.sock:/var/run/docker.sock \
+                    -v $HOME/.cache/trivy:/root/.cache/ \
+                    aquasec/trivy:latest image \
+                    --severity HIGH,CRITICAL --exit-code 0 \
+                    $IMAGE_NAME:$IMAGE_TAG
+              '''
+          }
+      }
   }
 }
